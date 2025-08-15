@@ -1,0 +1,168 @@
+﻿Public Class Form1
+
+    Private Btn As Button()
+    Private Indicators As Panel()
+
+
+    Private X As Integer
+    Private Y As Integer
+
+    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Indicators = {Foodindc, DrinksIndc, DessertsIndc, CartIndc, AboutIndc}
+        Visible(Foods:=True)
+        SetIndcator(Foodindc)
+
+        For Each c As Control In Controls
+            AddHandler c.MouseDown, AddressOf Form1_MouseDown
+            AddHandler c.MouseMove, AddressOf Form1_MouseMove
+        Next
+
+
+    End Sub
+
+    Private Sub Visible(Optional Foods As Boolean = False, Optional Drinks As Boolean = False, Optional Desserts As Boolean = False, Optional Cart As Boolean = False, Optional About As Boolean = False)
+        Me.Foods.Visible = Foods
+        Me.Drinks.Visible = Drinks
+        Me.Desserts.Visible = Desserts
+        Me.Cart.Visible = Cart
+        Me.About.Visible = About
+    End Sub
+
+    Private Sub SetIndcator(activeIndicator As Panel)
+        For i As Integer = 0 To Indicators.Length - 1
+            Dim isActive As Boolean = (Indicators(i) Is activeIndicator)
+
+            Indicators(i).BackColor = If(isActive, Color.IndianRed, Color.Transparent)
+
+        Next
+    End Sub
+
+    Private Sub ItemDetails(name As String, price As String, desc As String, image As Image)
+        Visible(Cart:=True)
+        SetIndcator(CartIndc)
+        ItemName.Text = name
+        ItemPrice.Text = price
+        Itemdesc.Text = desc
+        ItemImage.BackgroundImage = image
+    End Sub
+
+    Private Sub DrinksBtn_Click(sender As Object, e As EventArgs) Handles DrinksBtn.Click
+        Visible(Drinks:=True) : SetIndcator(DrinksIndc)
+    End Sub
+
+    Private Sub FoodsBtn_Click(sender As Object, e As EventArgs) Handles FoodsBtn.Click
+        Visible(Foods:=True) : SetIndcator(Foodindc)
+    End Sub
+
+    Private Sub DessertsBtn_Click(sender As Object, e As EventArgs) Handles DessertsBtn.Click
+        Visible(Desserts:=True) : SetIndcator(DessertsIndc)
+    End Sub
+
+    Private Sub CartBtn_Click(sender As Object, e As EventArgs) Handles CartBtn.Click
+        Visible(Cart:=True) : SetIndcator(CartIndc)
+    End Sub
+
+    Private Sub AboutBtn_Click(sender As Object, e As EventArgs) Handles AboutBtn.Click
+        Visible(About:=True) : SetIndcator(AboutIndc)
+    End Sub
+
+    Private Sub Foods1_Click(sender As Object, e As EventArgs) Handles Foods1.Click
+        ItemDetails("Yumburger with Jolly Spaghetti", "₱135.00", "A tasty combo with Yumburger, half serving of sweet spaghetti, fries and drink.", Foods1.BackgroundImage)
+    End Sub
+
+    Private Sub Foods2_Click(sender As Object, e As EventArgs) Handles Foods2.Click
+        ItemDetails("Cheesy Yumburger", "₱72.00", "Juicy beef patty with cheese and Jollibee's signature dressing in a soft bun.", Foods2.BackgroundImage)
+    End Sub
+
+    Private Sub Foods3_Click(sender As Object, e As EventArgs) Handles Foods3.Click
+        ItemDetails("Yumburger", "₱42.00", "The original burger burger with tender beef patty and signature dressing in a fluffy bun.", Foods3.BackgroundImage)
+    End Sub
+
+    Private Sub Foods4_Click(sender As Object, e As EventArgs) Handles Foods4.Click
+        ItemDetails("1-pc. Chickenjoy w/ Jolly Spaghetti", "₱135.00", "Crispy Chickenjoy with Jollibee’s sweet-style spaghetti topped with cheese.", Foods4.BackgroundImage)
+    End Sub
+
+    Private Sub Foods5_Click(sender As Object, e As EventArgs) Handles Foods5.Click
+        ItemDetails("1-pc. Chickenjoy", "₱85.00", "One piece of juicy, crispy fried chicken served with steamed rice.", Foods5.BackgroundImage)
+    End Sub
+
+    Private Sub Foods6_Click(sender As Object, e As EventArgs) Handles Foods6.Click
+        ItemDetails("2-pc. Chickenjoy", "₱169.00", "TDouble the crispy Chickenjoy goodness, served with rice.", Foods6.BackgroundImage)
+    End Sub
+
+    Private Sub Drink1_Click(sender As Object, e As EventArgs) Handles Drink1.Click
+        ItemDetails("Coke Zero", "₱61.00", "Same Coke Taste with zero sugar, guilt free enjoyment", Drink1.BackgroundImage)
+    End Sub
+
+    Private Sub Drink2_Click(sender As Object, e As EventArgs) Handles Drink2.Click
+        ItemDetails("Sprite", "₱61.00", "Sparkling lemon-lime soda with a clean, crisp taste.", Drink2.BackgroundImage)
+    End Sub
+
+    Private Sub Drink3_Click(sender As Object, e As EventArgs) Handles Drink3.Click
+        ItemDetails("Royal", "₱61.00", "Sweet and fruity orange soda, bubbly and refreshing.", Drink3.BackgroundImage)
+    End Sub
+
+    Private Sub Drink4_Click(sender As Object, e As EventArgs) Handles Drink4.Click
+        ItemDetails("Iced Mocha", "₱69.00", "A chilled blend of bold coffee and rich chocolate, perfect for an energizing treat.", Drink4.BackgroundImage)
+    End Sub
+
+    Private Sub Drink5_Click(sender As Object, e As EventArgs) Handles Drink5.Click
+        ItemDetails("Iced Tea", "₱66.00", "Crisp, cool, and sweet — a thirst-quenching favorite.", Drink5.BackgroundImage)
+    End Sub
+
+    Private Sub Drink7_Click(sender As Object, e As EventArgs) Handles Drink6.Click
+        ItemDetails("Iced Mocha Float", "₱80.00", "The best of both worlds: iced mocha topped with creamy vanilla soft serve.", Drink6.BackgroundImage)
+    End Sub
+
+    Private Sub Desserts1_Click(sender As Object, e As EventArgs) Handles Desserts1.Click
+        ItemDetails("Cookies & Cream Sundae", "₱59.00", "Creamy vanilla soft serve drizzled with chocolate syrup and crushed Oreo Bits", Desserts1.BackgroundImage)
+    End Sub
+
+    Private Sub Desserts2_Click(sender As Object, e As EventArgs) Handles Desserts2.Click
+        ItemDetails("Sweet 6 Pies To-Go", "₱239.00", "Six pieces of golden, crispy pies, perfect for sharing with family and friends.", Desserts2.BackgroundImage)
+    End Sub
+
+    Private Sub Desserts3_Click(sender As Object, e As EventArgs) Handles Desserts3.Click
+        ItemDetails("3 Pies To-Go", "₱122.00", "A triple pack of warm, sweet pies with fruit filling.", Desserts3.BackgroundImage)
+    End Sub
+
+    Private Sub Desserts4_Click(sender As Object, e As EventArgs) Handles Desserts4.Click
+        ItemDetails("Chocolate Sundae", "₱52.00", "Silky vanilla ice cream topped generously with rich chocolate syrup.", Desserts4.BackgroundImage)
+    End Sub
+
+    Private Sub Desserts5_Click(sender As Object, e As EventArgs) Handles Desserts5.Click
+        ItemDetails("Mini Chocolate Sundae", "₱27.00", "A smaller but equally indulgent version of the chocolate sundae.", Desserts5.BackgroundImage)
+    End Sub
+
+    Private Sub Desserts6_Click(sender As Object, e As EventArgs) Handles Desserts6.Click
+        ItemDetails("Large Peach Mango Pie", "₱66.00", "A bigger bite of the Jollibee classic — crispy crust with sweet peach-mango filling.", Desserts6.BackgroundImage)
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        MessageBox.Show("You have successfully placed your order.")
+    End Sub
+
+    Private Sub Form1_MouseDown(sender As Object, e As MouseEventArgs) Handles MyBase.MouseDown
+        X = e.X : Y = e.Y
+    End Sub
+
+    Private Sub Form1_MouseMove(sender As Object, e As MouseEventArgs) Handles MyBase.MouseMove
+        If e.Button = MouseButtons.Left Then Location += New Size(e.X - X, e.Y - Y)
+    End Sub
+
+    Private Sub Close_Click(sender As Object, e As EventArgs) Handles Close.Click
+        Application.Exit()
+    End Sub
+
+    Private Sub Minimize_Click(sender As Object, e As EventArgs) Handles Minimize.Click
+        Me.WindowState = FormWindowState.Minimized
+    End Sub
+
+    Private Sub Maximize_Click(sender As Object, e As EventArgs) Handles Maximize.Click
+        If Me.WindowState = FormWindowState.Normal Then
+            Me.WindowState = FormWindowState.Maximized
+        Else
+            Me.WindowState = FormWindowState.Normal
+        End If
+    End Sub
+End Class
