@@ -1,8 +1,8 @@
-```
 Public Class Form1
 
     Private Btn As Button()
     Private Indicators As Panel()
+
 
     Private X As Integer
     Private Y As Integer
@@ -16,6 +16,8 @@ Public Class Form1
             AddHandler c.MouseDown, AddressOf Form1_MouseDown
             AddHandler c.MouseMove, AddressOf Form1_MouseMove
         Next
+
+
     End Sub
 
     Private Sub Visible(Optional Foods As Boolean = False, Optional Drinks As Boolean = False, Optional Desserts As Boolean = False, Optional Cart As Boolean = False, Optional About As Boolean = False)
@@ -24,12 +26,15 @@ Public Class Form1
         Me.Desserts.Visible = Desserts
         Me.Cart.Visible = Cart
         Me.About.Visible = About
+
     End Sub
 
     Private Sub SetIndcator(activeIndicator As Panel)
         For i As Integer = 0 To Indicators.Length - 1
             Dim isActive As Boolean = (Indicators(i) Is activeIndicator)
+
             Indicators(i).BackColor = If(isActive, Color.IndianRed, Color.Transparent)
+
         Next
     End Sub
 
@@ -42,7 +47,6 @@ Public Class Form1
         ItemImage.BackgroundImage = image
     End Sub
 
-    ' Navigation button events
     Private Sub DrinksBtn_Click(sender As Object, e As EventArgs) Handles DrinksBtn.Click
         Visible(Drinks:=True) : SetIndcator(DrinksIndc)
     End Sub
@@ -63,7 +67,6 @@ Public Class Form1
         Visible(About:=True) : SetIndcator(AboutIndc)
     End Sub
 
-    ' Food item click events
     Private Sub Foods1_Click(sender As Object, e As EventArgs) Handles Foods1.Click
         ItemDetails("Yumburger with Jolly Spaghetti", "₱135.00", "A tasty combo with Yumburger, half serving of sweet spaghetti, fries and drink.", Foods1.BackgroundImage)
     End Sub
@@ -85,10 +88,9 @@ Public Class Form1
     End Sub
 
     Private Sub Foods6_Click(sender As Object, e As EventArgs) Handles Foods6.Click
-        ItemDetails("2-pc. Chickenjoy", "₱169.00", "Double the crispy Chickenjoy goodness, served with rice.", Foods6.BackgroundImage)
+        ItemDetails("2-pc. Chickenjoy", "₱169.00", "TDouble the crispy Chickenjoy goodness, served with rice.", Foods6.BackgroundImage)
     End Sub
 
-    ' Drink item click events
     Private Sub Drink1_Click(sender As Object, e As EventArgs) Handles Drink1.Click
         ItemDetails("Coke Zero", "₱61.00", "Same Coke Taste with zero sugar, guilt free enjoyment", Drink1.BackgroundImage)
     End Sub
@@ -109,11 +111,10 @@ Public Class Form1
         ItemDetails("Iced Tea", "₱66.00", "Crisp, cool, and sweet — a thirst-quenching favorite.", Drink5.BackgroundImage)
     End Sub
 
-    Private Sub Drink6_Click(sender As Object, e As EventArgs) Handles Drink6.Click
+    Private Sub Drink7_Click(sender As Object, e As EventArgs) Handles Drink6.Click
         ItemDetails("Iced Mocha Float", "₱80.00", "The best of both worlds: iced mocha topped with creamy vanilla soft serve.", Drink6.BackgroundImage)
     End Sub
 
-    ' Dessert item click events
     Private Sub Desserts1_Click(sender As Object, e As EventArgs) Handles Desserts1.Click
         ItemDetails("Cookies & Cream Sundae", "₱59.00", "Creamy vanilla soft serve drizzled with chocolate syrup and crushed Oreo Bits", Desserts1.BackgroundImage)
     End Sub
@@ -142,7 +143,6 @@ Public Class Form1
         MessageBox.Show("You have successfully placed your order.")
     End Sub
 
-    ' Drag form functionality
     Private Sub Form1_MouseDown(sender As Object, e As MouseEventArgs) Handles MyBase.MouseDown
         X = e.X : Y = e.Y
     End Sub
@@ -151,7 +151,6 @@ Public Class Form1
         If e.Button = MouseButtons.Left Then Location += New Size(e.X - X, e.Y - Y)
     End Sub
 
-    ' Window controls
     Private Sub Close_Click(sender As Object, e As EventArgs) Handles Close.Click
         Application.Exit()
     End Sub
@@ -167,6 +166,4 @@ Public Class Form1
             Me.WindowState = FormWindowState.Normal
         End If
     End Sub
-
 End Class
-```
