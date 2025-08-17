@@ -1,4 +1,4 @@
-```visualbasic
+```vbnet
 
 Public Class Form1
 
